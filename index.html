@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKKA | Portfolio Ultra Premium</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box;}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            color: white;
+            overflow-x: hidden;
+        }
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085') no-repeat center/cover fixed;
+            position: relative;
+            text-align: center;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+        }
+        header h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: gold;
+            text-shadow: 0 0 20px rgba(255,215,0,0.8);
+            z-index: 1;
+        }
+        header p {
+            font-size: 1.5rem;
+            color: #ccc;
+            margin: 10px 0;
+            z-index: 1;
+        }
+        header a {
+            padding: 12px 30px;
+            background: gold;
+            color: black;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+        header a:hover {
+            background: transparent;
+            color: gold;
+            border: 2px solid gold;
+            box-shadow: 0 0 15px gold;
+        }
+        section {
+            padding: 80px 10%;
+        }
+        .about {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        .about img {
+            width: 350px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255,215,0,0.3);
+        }
+        .skills .skill {
+            margin-bottom: 20px;
+        }
+        .bar {
+            background: #333;
+            border-radius: 50px;
+            overflow: hidden;
+            height: 20px;
+        }
+        .bar span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, gold, orange);
+            width: 0;
+            transition: width 2s ease;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .stat-box {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        .stat-box h2 {
+            font-size: 2.5rem;
+            color: gold;
+        }
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .project {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        .project img {
+            width: 100%;
+            transition: transform 0.5s;
+        }
+        .project:hover img {
+            transform: scale(1.1);
+        }
+        .contact {
+            text-align: center;
+        }
+        footer {
+            background: #111;
+            text-align: center;
+            padding: 20px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<header data-aos="zoom-in">
+    <h1>AKKA</h1>
+    <p>Luxury & Premium Portfolio</p>
+    <a href="#about">Explore</a>
+</header>
+
+<section class="about" id="about" data-aos="fade-up">
+    <img src="https://images.unsplash.com/photo-1603415526960-f7e0328d518b" alt="AKKA">
+    <div>
+        <h2 style="color:gold;">About Me</h2>
+        <p>AKKA adalah developer dengan sentuhan premium, menggabungkan teknologi canggih dan desain mewah untuk menghasilkan karya yang tak hanya berfungsi, tapi memukau.</p>
+    </div>
+</section>
+
+<section class="skills" data-aos="fade-up">
+    <h2 style="color:gold;">Skills</h2>
+    <div class="skill">
+        <p>Web Development</p>
+        <div class="bar"><span style="width:90%"></span></div>
+    </div>
+    <div class="skill">
+        <p>UI/UX Design</p>
+        <div class="bar"><span style="width:85%"></span></div>
+    </div>
+    <div class="skill">
+        <p>Branding</p>
+        <div class="bar"><span style="width:80%"></span></div>
+    </div>
+</section>
+
+<section class="stats" data-aos="fade-up">
+    <div class="stat-box">
+        <h2>100+</h2>
+        <p>Projects</p>
+    </div>
+    <div class="stat-box">
+        <h2>10+</h2>
+        <p>Years Exp</p>
+    </div>
+    <div class="stat-box">
+        <h2>50+</h2>
+        <p>Clients</p>
+    </div>
+    <div class="stat-box">
+        <h2>5</h2>
+        <p>Awards</p>
+    </div>
+</section>
+
+<section class="projects" data-aos="fade-up">
+    <div class="project"><img src="https://images.unsplash.com/photo-1557804506-669a67965ba0" alt=""></div>
+    <div class="project"><img src="https://images.unsplash.com/photo-1522202195461-31a6ec1b5b2d" alt=""></div>
+    <div class="project"><img src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf" alt=""></div>
+</section>
+
+<section class="contact" data-aos="fade-up">
+    <h2 style="color:gold;">Contact Me</h2>
+    <p>Email: <a href="mailto:contact@akka.com" style="color:gold;">contact@akka.com</a></p>
+</section>
+
+<footer>
+    <p>© 2025 AKKA | All Rights Reserved</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({duration: 1200});
+    window.addEventListener('scroll', () => {
+        document.querySelectorAll('.bar span').forEach(bar => {
+            const pos = bar.getBoundingClientRect().top;
+            if (pos < window.innerHeight) {
+                bar.style.width = bar.getAttribute('style').match(/width:\s*([^;]+)/)[1];
+            }
+        });
+    });
+</script>
+</body>
+  </html>
