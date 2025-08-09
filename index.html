@@ -1,134 +1,549 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AK Luxury & Premium Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AKKA — Megaluxury Portfolio</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-    * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins', sans-serif;}
-    
-    body {
-      background-color: #0b0b0b;
-      color: white;
-    }
+  :root{
+    --bg-900:#040405;
+    --bg-800:#0a0a0b;
+    --gold:#d4af37;
+    --gold-strong:#ffd54a;
+    --muted:rgba(255,255,255,0.08);
+    --glass:rgba(255,255,255,0.04);
+    --card-border:rgba(212,175,55,0.12);
+    --ease: cubic-bezier(.2,.9,.25,1);
+  }
+  /* Reset */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    color: #ececec;
+    background: var(--bg-900);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+  }
 
-    /* Hero Section */
-    .hero {
-      height: 100vh;
-      background: url('https://images.unsplash.com/photo-1606813902919-5f9a84cb93a7?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      top:0; left:0;
-      width:100%; height:100%;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(2px);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      background: linear-gradient(90deg, #FFD700, #FFB700, #FFD700);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 3s linear infinite;
-      text-shadow: 0 0 15px rgba(255,215,0,0.5);
-    }
-    @keyframes shimmer {
-      0% {background-position: 0% center;}
-      100% {background-position: 200% center;}
-    }
-    .hero p {
-      font-size: 1.2rem;
-      color: #ccc;
-      margin-top: 10px;
-    }
+  /* ---------- Subtle patterned background (SVG data URI) ---------- */
+  body::before{
+    content:"";
+    position:fixed; inset:0; z-index:-3;
+    background:
+      radial-gradient(1200px 600px at 10% 10%, rgba(212,175,55,0.04), transparent 10%),
+      radial-gradient(800px 400px at 90% 90%, rgba(255,255,255,0.02), transparent 12%),
+      linear-gradient(180deg, var(--bg-900) 0%, var(--bg-800) 100%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'><defs><pattern id='p' width='40' height='40' patternUnits='userSpaceOnUse'><path d='M0 20 L20 40 M-10 10 L10 30 M30 0 L50 20' stroke='%23ffffff' stroke-opacity='0.02' stroke-width='1' fill='none'/></pattern></defs><rect width='800' height='800' fill='url(%23p)'/></svg>");
+    background-blend-mode:overlay,multiply,normal,normal;
+    background-size:cover;
+  }
 
-    /* About Me */
-    .about {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 80px 10%;
-      gap: 40px;
-      background: linear-gradient(180deg, #0b0b0b, #1a1a1a);
-    }
-    .about-box {
-      flex: 1;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 30px;
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(255,215,0,0.1);
-      animation: fadeInLeft 1.5s ease;
-    }
-    @keyframes fadeInLeft {
-      from {opacity: 0; transform: translateX(-50px);}
-      to {opacity: 1; transform: translateX(0);}
-    }
-    .about-text {
-      flex: 1;
-      animation: fadeInRight 1.5s ease;
-    }
-    @keyframes fadeInRight {
-      from {opacity: 0; transform: translateX(50px);}
-      to {opacity: 1; transform: translateX(0);}
-    }
-    .about-box h3 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      color: gold;
-    }
-    .about-box p {
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #ddd;
-    }
-    .about-text h2 {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      color: gold;
-    }
-    .about-text p {
-      font-size: 1rem;
-      color: #ccc;
-      line-height: 1.6;
-    }
+  /* ---------- Top hero ---------- */
+  .hero {
+    min-height:100vh;
+    display:grid;
+    grid-template-columns: 1fr 480px;
+    gap:48px;
+    align-items:center;
+    padding:80px 80px;
+    position:relative;
+  }
+  /* dark blur overlay to increase contrast of text */
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+    z-index:0;
+    pointer-events:none;
+    backdrop-filter: blur(2px);
+  }
+
+  /* particle canvas sits under content but above background pattern */
+  #particles {
+    position: absolute; inset:0; z-index:-1; pointer-events:none;
+  }
+
+  .hero-left{
+    position:relative; z-index:2; max-width:920px;
+    padding-left:20px;
+  }
+  .kicker{
+    display:inline-block; padding:8px 14px; border-radius:999px;
+    background:linear-gradient(90deg, rgba(212,175,55,0.09), rgba(212,175,55,0.04));
+    color:var(--gold); font-weight:700; font-size:13px; border:1px solid rgba(212,175,55,0.08);
+    margin-bottom:18px;
+  }
+  h1.main-title{
+    font-family:"Playfair Display",serif;
+    font-size:64px; line-height:1; margin:8px 0 14px;
+    background: linear-gradient(90deg, #fff, var(--gold-strong) 45%, var(--gold) 70%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    position:relative; display:inline-block;
+    text-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    transform-style:preserve-3d;
+    letter-spacing: -1px;
+  }
+
+  /* sheen animation overlay */
+  .main-title::after{
+    content:""; position:absolute; inset:0; left:-30%;
+    background:linear-gradient(90deg, rgba(255,255,255,0.0), rgba(255,255,255,0.45), rgba(255,255,255,0.0));
+    transform:skewX(-20deg);
+    animation: sheen 3.2s linear infinite;
+    mix-blend-mode:screen;
+  }
+  @keyframes sheen{
+    0%{left:-30%}
+    100%{left:130%}
+  }
+
+  .sub{
+    margin-top:6px; color:rgba(255,255,255,0.78); font-size:18px; max-width:720px;
+  }
+  .cta-row{margin-top:22px; display:flex; gap:14px; align-items:center}
+  .btn{
+    padding:12px 20px; border-radius:999px; font-weight:700; cursor:pointer;
+    border:1px solid rgba(255,255,255,0.05); text-decoration:none;
+  }
+  .btn-primary{
+    background: linear-gradient(90deg,var(--gold), var(--gold-strong));
+    color:#080808; box-shadow:0 12px 48px rgba(212,175,55,0.12);
+  }
+  .btn-ghost{
+    background:transparent; color:#eee; border:1px solid rgba(255,255,255,0.06);
+  }
+
+  /* right hero card: 3D glass block */
+  .hero-card{
+    position:relative; z-index:2;
+    align-self:start;
+  }
+  .card-3d{
+    width:100%; max-width:420px; height: auto;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    border-radius:18px; padding:22px;
+    border:1px solid var(--card-border);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.6);
+    transform-style:preserve-3d;
+    transition: transform 650ms var(--ease), box-shadow 350ms var(--ease);
+    perspective:1000px;
+  }
+  .card-3d:hover{ transform: translateY(-8px) rotateX(1deg) rotateY(2deg); box-shadow:0 40px 120px rgba(0,0,0,0.75); }
+
+  .card-top{ display:flex; gap:14px; align-items:center }
+  .logo-mark{
+    width:72px; height:72px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.05));
+    border:1px solid rgba(255,255,255,0.03); color:var(--gold); font-weight:900; font-size:20px;
+  }
+  .card-meta .name{font-weight:800; font-size:18px; color:#fff}
+  .card-meta .role{font-size:13px; color:rgba(255,255,255,0.68); margin-top:6px}
+
+  .mini-stats{ display:flex; gap:10px; margin-top:18px }
+  .mini{ flex:1; background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent); padding:10px; border-radius:10px; text-align:center; border:1px solid rgba(255,255,255,0.03); }
+  .mini .num{ font-weight:900; color:var(--gold); font-size:18px}
+  .mini .lbl{ font-size:12px; color:rgba(255,255,255,0.7); margin-top:4px; }
+
+  /* ---------- Section: About / Skills / Projects ---------- */
+  .section{
+    padding:72px 80px;
+    max-width:1400px;
+    margin:0 auto;
+  }
+  .about-wrap{
+    display:grid; grid-template-columns: 1fr 520px; gap:36px; align-items:center;
+  }
+
+  /* Left: glass highlight block (no photo) */
+  .highlight{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:16px; padding:28px; border:1px solid var(--card-border);
+    backdrop-filter: blur(8px); box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+    transform-style:preserve-3d;
+  }
+  .highlight h3{ color:var(--gold); font-size:20px; margin-bottom:10px; font-weight:800; }
+  .highlight p{ color:rgba(255,255,255,0.78); line-height:1.6; }
+
+  /* Right: about text */
+  .about-detail h2{ font-family:"Playfair Display",serif; color:var(--gold); font-size:28px; margin-bottom:10px; }
+  .about-detail p{ color:rgba(255,255,255,0.86); line-height:1.7; }
+
+  /* Skill bars */
+  .skills{ margin-top:20px; display:grid; gap:12px; }
+  .skill-row{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .skill-name{ font-weight:700; color:#fff; font-size:13px; }
+  .bar-outer{ flex:1; height:12px; background:rgba(255,255,255,0.04); border-radius:999px; overflow:hidden; border:1px solid rgba(255,255,255,0.02); }
+  .bar-inner{ height:100%; width:0%; background:linear-gradient(90deg,var(--gold), var(--gold-strong)); border-radius:999px; transition: width 1200ms var(--ease); box-shadow:0 8px 30px rgba(212,175,55,0.08); }
+
+  /* Stats counters */
+  .stats{ display:flex; gap:16px; margin-top:22px; }
+  .stat-box{ flex:1; padding:18px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border:1px solid var(--card-border); text-align:center; }
+  .stat-box .num{ font-weight:900; color:var(--gold); font-size:22px; }
+  .stat-box .lbl{ color:rgba(255,255,255,0.78); font-size:13px; margin-top:6px; }
+
+  /* Projects grid */
+  .projects-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:22px; }
+  .proj-card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px; padding:14px; border:1px solid var(--card-border);
+    transition: transform 450ms var(--ease), box-shadow 450ms var(--ease);
+    transform-style: preserve-3d;
+    cursor:pointer;
+  }
+  .proj-card:hover{ transform: translateY(-12px) rotateX(3deg); box-shadow: 0 38px 140px rgba(0,0,0,0.7); }
+  .proj-title{ font-weight:800; margin-bottom:8px; }
+  .proj-meta{ color:rgba(255,255,255,0.7); font-size:13px; }
+
+  /* Lightbox */
+  #lb{ display:none; position:fixed; inset:0; z-index:200; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); }
+  #lb .box{ width:92%; max-width:900px; background:linear-gradient(180deg,#0b0b0b,#0f0f10); padding:20px; border-radius:12px; border:1px solid rgba(255,255,255,0.04); }
+
+  /* Footer */
+  footer{ padding:30px; text-align:center; color:rgba(255,255,255,0.6); border-top:1px solid rgba(255,255,255,0.03); margin-top:48px; }
+
+  /* Reveal helpers */
+  .reveal{ opacity:0; transform: translateY(18px); transition:all 700ms var(--ease); }
+  .reveal.show{ opacity:1; transform: translateY(0); }
+
+  /* Responsive: mobile-first but desktop-first feel preserved */
+  @media (max-width:1100px){
+    .hero{ grid-template-columns: 1fr; padding:60px 28px; gap:28px; min-height:80vh; }
+    .card-3d{ max-width:100% }
+    .hero-left{ padding-left:0 }
+    .section{ padding:48px 28px }
+    .about-wrap{ grid-template-columns: 1fr; }
+    .projects-grid{ grid-template-columns:repeat(2,1fr) }
+    h1.main-title{ font-size:44px }
+  }
+  @media (max-width:640px){
+    h1.main-title{ font-size:36px }
+    .projects-grid{ grid-template-columns:1fr }
+    .kicker{ display:block }
+    .cta-row{flex-direction:column; align-items:flex-start}
+  }
   </style>
 </head>
 <body>
 
+  <!-- Particle canvas -->
+  <canvas id="particles"></canvas>
+
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>AK Luxury & Premium Portfolio</h1>
-      <p>Elegance. Excellence. Exclusivity.</p>
-    </div>
-  </section>
+  <header class="hero" role="banner" aria-label="Hero Section">
+    <div class="hero-left">
+      <div class="kicker reveal">PORTOFOLIO PREMIUM</div>
+      <h1 class="main-title reveal">AKKA — Luxury & Craft</h1>
+      <p class="sub reveal">Membangun digital products dengan detail mewah, performa tinggi, dan estetika yang membuat klien percaya — karya yang layak dibayar mahal.</p>
 
-  <!-- ABOUT -->
-  <section class="about">
-    <div class="about-box">
-      <h3>Highlights</h3>
-      <p>Crafting high-end digital experiences with precision, style, and performance that speak for themselves.</p>
-      <p>Turning visions into premium realities since day one.</p>
-    </div>
-    <div class="about-text">
-      <h2>About Me</h2>
-      <p>AK is a premium web developer specializing in creating elegant, high-performance, and future-proof digital solutions. Every project reflects a balance of luxury aesthetics and cutting-edge technology, designed to impress and perform flawlessly.</p>
-    </div>
-  </section>
+      <div class="cta-row reveal" style="margin-top:20px;">
+        <a class="btn btn-primary" href="#projects">Lihat Proyek</a>
+        <a class="btn btn-ghost" href="#contact">Kontak</a>
+      </div>
 
+      <div class="features reveal" style="display:flex; gap:12px; margin-top:18px;">
+        <div style="background:var(--glass); padding:10px 12px; border-radius:10px; border:1px solid var(--card-border); font-size:13px;">Design System</div>
+        <div style="background:var(--glass); padding:10px 12px; border-radius:10px; border:1px solid var(--card-border); font-size:13px;">High-Convert UI</div>
+        <div style="background:var(--glass); padding:10px 12px; border-radius:10px; border:1px solid var(--card-border); font-size:13px;">Brand Strategy</div>
+      </div>
+    </div>
+
+    <aside class="hero-card reveal">
+      <div class="card-3d" id="tiltCard">
+        <div class="card-top">
+          <!-- Left: no photo/logo; but a stylized AK1NF mark could go here visually -->
+          <div class="logo-mark" aria-hidden="true">AK1NF</div>
+          <div class="card-meta">
+            <div class="name">AKKA (AK1NF)</div>
+            <div class="role">Full-stack & UI/UX Specialist</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.62);margin-top:8px">Jakarta • Available for premium projects</div>
+          </div>
+        </div>
+
+        <div class="mini-stats">
+          <div class="mini"><div class="num">100+</div><div class="lbl">Proyek</div></div>
+          <div class="mini"><div class="num">10y</div><div class="lbl">Pengalaman</div></div>
+          <div class="mini"><div class="num">95%</div><div class="lbl">Retensi Klien</div></div>
+        </div>
+
+        <div style="margin-top:16px; display:flex; gap:8px; align-items:center;">
+          <div style="flex:1; font-size:13px; color:rgba(255,255,255,0.8)">Rate: <strong style="color:var(--gold)">Premium</strong></div>
+          <button class="btn btn-ghost" onclick="scrollToContact()">Hire</button>
+        </div>
+      </div>
+    </aside>
+  </header>
+
+  <!-- ABOUT / SKILLS -->
+  <main>
+    <section class="section about-wrap" id="about">
+      <div class="highlight reveal">
+        <h3>Signature Highlights</h3>
+        <p>Design language khusus, sistem komponen yang bisa diskalakan, micro-interactions premium, serta approach pengembangan yang fokus pada konversi dan brand value.</p>
+        <ul style="margin-top:12px; color:rgba(255,255,255,0.82); list-style:none; padding-left:0;">
+          <li style="margin-top:8px;">• UI system & design tokens</li>
+          <li style="margin-top:6px;">• High-performance front-end</li>
+          <li style="margin-top:6px;">• Branding & visual identity</li>
+        </ul>
+      </div>
+
+      <div class="about-detail reveal">
+        <h2>About Me</h2>
+        <p>Aku membangun produk digital yang punya estetika kelas atas dan logika teknis yang tahan pakai. Fokus pada detail visual, animasi halus, dan arsitektur front-end yang mudah dipelihara.</p>
+
+        <div class="skills" style="margin-top:18px;">
+          <div class="skill-row">
+            <div class="skill-name">UI / Visual Design</div>
+            <div style="width:90px; text-align:right; color:rgba(255,255,255,0.78)">92%</div>
+            <div class="bar-outer"><div class="bar-inner" data-width="92%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Front-end (React/Vue)</div>
+            <div style="width:90px; text-align:right; color:rgba(255,255,255,0.78)">89%</div>
+            <div class="bar-outer"><div class="bar-inner" data-width="89%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Branding & Strategy</div>
+            <div style="width:90px; text-align:right; color:rgba(255,255,255,0.78)">85%</div>
+            <div class="bar-outer"><div class="bar-inner" data-width="85%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Backend & API</div>
+            <div style="width:90px; text-align:right; color:rgba(255,255,255,0.78)">78%</div>
+            <div class="bar-outer"><div class="bar-inner" data-width="78%"></div></div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat-box"><div class="num" data-target="150">0</div><div class="lbl">Jam Konsultasi</div></div>
+          <div class="stat-box"><div class="num" data-target="100">0</div><div class="lbl">Proyek Selesai</div></div>
+          <div class="stat-box"><div class="num" data-target="35">0</div><div class="lbl">Klien</div></div>
+          <div class="stat-box"><div class="num" data-target="97">0</div><div class="lbl">Rating (%)</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div style="display:flex; justify-content:space-between; align-items:end;">
+        <div>
+          <div style="font-weight:900; color:var(--gold); font-size:20px;">Proyek Unggulan</div>
+          <div style="color:rgba(255,255,255,0.72); font-size:13px;">Contoh kerja yang sudah siap di-deploy / dijual.</div>
+        </div>
+        <div style="color:rgba(255,255,255,0.55); font-size:13px;">Filter: All • Web • Mobile • Brand</div>
+      </div>
+
+      <div class="projects-grid reveal">
+        <div class="proj-card" data-title="E-Commerce Luxury" data-desc="Branding + UI Kit + Checkout Optimized">
+          <div class="proj-title">E-Commerce Luxury</div>
+          <div class="proj-meta">Web • 2024</div>
+        </div>
+
+        <div class="proj-card" data-title="FinTrack App" data-desc="Mobile app; micro-interactions">
+          <div class="proj-title">FinTrack App</div>
+          <div class="proj-meta">Mobile • 2023</div>
+        </div>
+
+        <div class="proj-card" data-title="Portfolio Template" data-desc="Template premium, marketplace ready">
+          <div class="proj-title">Portfolio Template</div>
+          <div class="proj-meta">Template • 2025</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div style="display:grid; grid-template-columns:1fr 360px; gap:22px; align-items:start;">
+        <div>
+          <div style="font-weight:900; color:var(--gold); font-size:20px; margin-bottom:8px;">Tertarik kerja sama?</div>
+          <p style="color:rgba(255,255,255,0.78)">Kirim brief singkat. Biasanya dibalas dalam 24 jam untuk klien premium.</p>
+          <form onsubmit="event.preventDefault(); alert('Demo: form submitted. Integrate backend endpoint to send.');" style="margin-top:12px; display:flex; flex-direction:column; gap:10px;">
+            <input name="name" placeholder="Nama lengkap" required style="padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:#fff;" />
+            <input name="email" placeholder="Email" type="email" required style="padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:#fff;" />
+            <textarea name="message" placeholder="Deskripsikan project singkat..." required style="min-height:120px; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:#fff;"></textarea>
+            <div style="display:flex; gap:10px;">
+              <button class="btn btn-primary" type="submit">Kirim Brief</button>
+              <button class="btn btn-ghost" type="button" onclick="location.href='mailto:halo@akka.com'">Email</button>
+            </div>
+          </form>
+        </div>
+
+        <aside style="background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border-radius:12px; padding:18px; border:1px solid var(--card-border);">
+          <div style="font-weight:800; color:var(--gold); margin-bottom:8px;">Kontak Cepat</div>
+          <div style="color:rgba(255,255,255,0.78); font-size:14px;">Email: <strong style="color:var(--gold)">halo@akka.com</strong></div>
+          <div style="color:rgba(255,255,255,0.78); font-size:14px; margin-top:8px;">WA: <strong style="color:var(--gold)">+62 812 3456 7890</strong></div>
+          <div style="margin-top:12px; color:rgba(255,255,255,0.66); font-size:13px;">Atau kirim brief ke email dengan subject: <em>Project - [Nama Kamu]</em></div>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      &copy; <span id="yr"></span> AKKA • Built with taste & code — Megaluxury Edition
+    </footer>
+  </main>
+
+  <!-- Lightbox -->
+  <div id="lb" role="dialog" aria-hidden="true">
+    <div class="box">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div id="lb-title" style="font-weight:800; color:var(--gold)"></div>
+          <div id="lb-desc" style="color:rgba(255,255,255,0.8); margin-top:6px;"></div>
+        </div>
+        <button onclick="closeLB()" style="background:transparent; border:none; color:#fff; font-weight:800; font-size:20px; cursor:pointer;">✕</button>
+      </div>
+      <div style="margin-top:12px; color:rgba(255,255,255,0.68)">Preview demo — tambah gambar / link project di sini jika mau.</div>
+    </div>
+  </div>
+
+  <script>
+  // ---------- Utilities ----------
+  const $ = s => document.querySelector(s);
+  const $$ = s => Array.from(document.querySelectorAll(s));
+
+  // set year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Scroll reveal
+  function revealAll(){
+    $$('.reveal').forEach(el=>{
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight - 80) el.classList.add('show');
+    });
+  }
+  window.addEventListener('scroll', revealAll);
+  window.addEventListener('load', ()=>{ revealAll(); animateBars(); animateCounters(); });
+
+  // ---------- Progress bars ----------
+  function animateBars(){
+    $$('.bar-inner').forEach(b=>{
+      const targ = b.getAttribute('data-width') || '0%';
+      const rect = b.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 50){
+        b.style.width = targ;
+      }
+    });
+    window.addEventListener('scroll', ()=>{
+      $$('.bar-inner').forEach(b=>{
+        const rect = b.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 50) b.style.width = b.getAttribute('data-width');
+      });
+    });
+  }
+
+  // ---------- Counters ----------
+  function animateCounters(){
+    $$('.stat-box .num').forEach(el=>{
+      const target = +el.getAttribute('data-target') || 0;
+      el.textContent = 0;
+      let started=false;
+      function start(){
+        if(started) return;
+        if(el.getBoundingClientRect().top < window.innerHeight - 80){
+          started=true;
+          const duration=1200;
+          const step = Math.ceil(target/(duration/30));
+          let v=0;
+          const iv = setInterval(()=>{
+            v += step;
+            if(v >= target){ el.textContent = target; clearInterval(iv); }
+            else el.textContent = v;
+          },30);
+        }
+      }
+      start();
+      window.addEventListener('scroll', start);
+    });
+  }
+
+  // ---------- Projects lightbox ----------
+  $$('.proj-card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const t = card.getAttribute('data-title') || 'Project';
+      const d = card.getAttribute('data-desc') || '';
+      $('#lb-title').textContent = t;
+      $('#lb-desc').textContent = d;
+      $('#lb').style.display = 'flex';
+      $('#lb').setAttribute('aria-hidden','false');
+    });
+  });
+  function closeLB(){ $('#lb').style.display='none'; $('#lb').setAttribute('aria-hidden','true'); }
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLB(); });
+
+  // ---------- Scroll to contact ----------
+  function scrollToContact(){ document.querySelector('#contact').scrollIntoView({behavior:'smooth'}); }
+
+  // ---------- Tilt effect for hero card ----------
+  const tiltEl = document.getElementById('tiltCard');
+  if(tiltEl){
+    tiltEl.addEventListener('mousemove', e=>{
+      const rect = tiltEl.getBoundingClientRect();
+      const cx = rect.left + rect.width/2;
+      const cy = rect.top + rect.height/2;
+      const dx = (e.clientX - cx)/(rect.width/2);
+      const dy = (e.clientY - cy)/(rect.height/2);
+      const rx = dy * 6; // rotateX
+      const ry = dx * -6; // rotateY
+      tiltEl.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(8px)`;
+    });
+    tiltEl.addEventListener('mouseleave', ()=>{ tiltEl.style.transform='none'; });
+  }
+
+  // ---------- Particle system (subtle gold dust) ----------
+  (function(){
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let W=canvas.width = innerWidth;
+    let H=canvas.height = innerHeight;
+    window.addEventListener('resize', ()=>{ W=canvas.width=innerWidth; H=canvas.height=innerHeight; });
+
+    const count = Math.round((W*H)/90000); // scale with screen
+    const particles = [];
+    for(let i=0;i<count;i++){
+      particles.push({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        r: Math.random()*1.6 + 0.3,
+        vx: (Math.random()-0.5)*0.25,
+        vy: -0.15 - Math.random()*0.3,
+        alpha: Math.random()*0.9
+      });
+    }
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      for(let p of particles){
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha -= 0.0008;
+        if(p.y < -10 || p.alpha <= 0){
+          p.x = Math.random()*W;
+          p.y = H + 10 + Math.random()*50;
+          p.alpha = Math.random()*0.9;
+        }
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(212,175,55,${p.alpha*0.9})`;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  // ---------- Accessibility: reduce motion if user prefers ----------
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if(mq.matches){
+    // disable animations
+    $$('[data-animate]').forEach(el=>el.removeAttribute('data-animate'));
+    $$('.bar-inner').forEach(b=>b.style.transition='none');
+  }
+
+  </script>
 </body>
-</html>
+  </html>
