@@ -95,11 +95,12 @@
     text-align: center;
   }
 
-  /* Paragraph text */
-  p {
+  /* Paragraph text for About Me & Tentang Developer */
+  p.about-text {
     margin-top: 20px;
     font-weight: 300;
     line-height: 1.6;
+    font-size: 1rem;
   }
 
   /* Flex layout for left and right columns */
@@ -184,7 +185,8 @@
     text-align: center;
     font-weight: 600;
     font-size: 1rem;
-    color: rgba(0, 0, 0, 0.15);
+    color: rgba(0, 0, 0, 0.25);
+    text-shadow: 0 0 4px rgba(255 255 255 / 0.15);
     user-select: none;
   }
 
@@ -210,7 +212,7 @@
 <body>
 
 <div id="welcome-screen">
-  Welcome to My Portfolio Website
+  HELLO WORLD
 </div>
 
 <div id="container">
@@ -218,7 +220,7 @@
   <section id="fortran-section">
     <h2>TENTANG DEVELOPER</h2>
     <small>AK1NF-(AZKA150506) lebih di kenal AKKA,,</small>
-    <p>nama asli AK1NF-(AZKA150506) adalah Azka Faiz Ahbar yang lebih di kenal dengan panggilan akka,tinggal di sokaraja,banyumas,Nama AK1NF(AZKA150506) adalah nama samaran yang ia gunakan untuk melakukan pemrograman digital / coding.</p>
+    <p class="about-text">nama asli AK1NF-(AZKA150506) adalah Azka Faiz Ahbar yang lebih di kenal dengan panggilan akka, tinggal di sokaraja, banyumas. Nama AK1NF (AZKA150506) adalah nama samaran yang ia gunakan untuk melakukan pemrograman digital / coding.</p>
 
     <div class="flex-row">
       <div class="flex-left">
@@ -243,7 +245,7 @@
     <div class="flex-row">
       <div class="flex-left">
         <h3>Hello I am AK1NF</h3>
-        <p>I'm a passionate developer focusing on clean code, efficient algorithms, and creating sleek user experiences.</p>
+        <p class="about-text">I'm a passionate developer focusing on clean code, efficient algorithms, and creating sleek user experiences.</p>
         <p>Below are some details from my CV:</p>
         <table>
           <thead>
@@ -335,4 +337,4 @@
 </script>
 
 </body>
-                          </html>
+  </html>
