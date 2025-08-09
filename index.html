@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AK1NF Portfolio</title>
+<title>AK1NF Portfolio - Lightweight</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
 
@@ -14,79 +14,25 @@
   body, html {
     height: 100%;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1a0033, #000000);
-    color: white;
+    background: #2e004f;
+    color: #dcdcdc;
     overflow-x: hidden;
+    position: relative;
   }
 
-  /* Glitch background effect container */
-  #background-glitch {
+  /* Serpihan putih halus background */
+  body::before {
+    content: "";
     position: fixed;
     top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #3b0080, #000, #004466, #110044);
-    animation: glitchBg 6s linear infinite;
-    z-index: -1;
-    filter: brightness(0.7);
-  }
-
-  @keyframes glitchBg {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  /* Container for all sections */
-  #container {
-    max-width: 960px;
-    margin: auto;
-    padding: 40px 20px 80px 20px;
-  }
-
-  /* Common glitch text style */
-  .glitch-text {
-    font-weight: 600;
-    position: relative;
-    color: white;
-    text-transform: uppercase;
-    font-size: 3rem;
-    user-select: none;
-    animation: glitch 2.5s infinite;
-    background: linear-gradient(90deg, #9d7c00, #fcd403);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Glitch animation */
-  @keyframes glitch {
-    0% {
-      text-shadow: 2px 0 gold, -2px 0 orange;
-    }
-    20% {
-      text-shadow: -2px 2px #f8e71c, 2px -2px #ffc600;
-    }
-    40% {
-      text-shadow: 2px -2px #fcd403, -2px 2px #f7da06;
-    }
-    60% {
-      text-shadow: -2px -2px #ffc500, 2px 2px #b39000;
-    }
-    80% {
-      text-shadow: 2px 2px #ffdd55, -2px -2px #b48a00;
-    }
-    100% {
-      text-shadow: 2px 0 gold, -2px 0 orange;
-    }
-  }
-
-  /* Section styles */
-  section {
-    margin-top: 60px;
-    padding: 20px;
-    background: rgba(20, 0, 40, 0.6);
-    border-radius: 14px;
-    box-shadow: 0 0 15px rgba(157,124,0,0.5);
-    backdrop-filter: blur(8px);
+    width: 100%; height: 100%;
+    pointer-events: none;
+    background:
+      radial-gradient(circle, rgba(255 255 255 / 0.12) 1px, transparent 1px),
+      radial-gradient(circle, rgba(255 255 255 / 0.08) 1px, transparent 1px);
+    background-position: 0 0, 25px 25px;
+    background-size: 50px 50px;
+    z-index: 0;
   }
 
   /* Welcome screen */
@@ -95,35 +41,68 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #4b0082, #000000);
+    background: linear-gradient(135deg, #4b0082, #2e004f);
     color: white;
     font-size: 3rem;
     font-weight: 700;
     user-select: none;
     text-transform: uppercase;
-    animation: glitch 2.5s infinite;
+    animation: fadeIn 2.5s ease forwards;
+    position: relative;
+    z-index: 10;
   }
 
-  /* Fortran developer section */
-  #fortran-section h2 {
-    font-size: 2.8rem;
-    background: linear-gradient(90deg, #a47c00, #ffd700);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glitch 2.5s infinite;
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
   }
-  #fortran-section small {
+
+  /* Main container */
+  #container {
+    max-width: 960px;
+    margin: auto;
+    padding: 40px 20px 80px 20px;
+    display: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Section styling */
+  section {
+    margin-top: 60px;
+    padding: 20px;
+    background: rgba(70, 30, 100, 0.6);
+    border-radius: 14px;
+    box-shadow: 0 0 15px rgba(150, 100, 230, 0.2);
+    backdrop-filter: none;
+    color: #dcdcdc;
+  }
+
+  /* Titles */
+  h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    color: #bb99ff;
+    user-select: none;
+  }
+
+  /* Subtitles */
+  small {
     display: block;
     margin-top: 6px;
-    color: #bbb;
+    color: #b3aaff;
     font-weight: 300;
-  }
-  #fortran-section p {
-    margin-top: 20px;
-    font-weight: 300;
+    text-align: center;
   }
 
-  /* Left right flex layout */
+  /* Paragraph text */
+  p {
+    margin-top: 20px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* Flex layout for left and right columns */
   .flex-row {
     display: flex;
     flex-wrap: wrap;
@@ -133,7 +112,6 @@
 
   .flex-left {
     flex: 1 1 50%;
-    color: white;
   }
 
   .flex-right {
@@ -143,82 +121,56 @@
   .flex-right img {
     max-width: 100%;
     border-radius: 10px;
-    filter: drop-shadow(0 0 8px #a88f00);
+    box-shadow: 0 0 8px #bb99ffaa;
   }
 
-  /* About me text */
-  #about-me h2 {
-    text-align: center;
-    font-size: 2.8rem;
-    background: linear-gradient(135deg, #8a2be2, #4b0082);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 8px #a38fff);
-    user-select: none;
-  }
-  #about-me h3 {
-    font-size: 2rem;
-    color: #a07cf7;
-    margin-bottom: 6px;
-    animation: glitch 3s infinite;
-  }
-  #about-me p {
-    font-weight: 300;
-    line-height: 1.5;
-  }
-
-  /* Tables for CV and stats */
+  /* Tables */
   table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 16px;
-    color: white;
+    color: #dcdcdc;
     font-weight: 300;
   }
   table, th, td {
-    border: 1px solid rgba(255, 215, 0, 0.4);
+    border: 1px solid rgba(187, 153, 255, 0.3);
   }
   th, td {
     padding: 10px 12px;
     text-align: left;
   }
   th {
-    background: rgba(255, 215, 0, 0.15);
+    background: rgba(187, 153, 255, 0.15);
   }
 
-  /* Transparent tables for stats */
+  /* Stats tables (presentase) */
   .stats-table {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(140, 90, 255, 0.2);
+    border-color: rgba(187, 153, 255, 0.4);
   }
   .stats-table th, .stats-table td {
-    color: white;
+    color: #dcdcdc;
   }
 
-  /* Portfolio Showcase */
+  /* Portfolio section */
   #portfolio {
     margin-top: 40px;
   }
   #portfolio h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    background: linear-gradient(90deg, #ffd700, #a47c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     margin-bottom: 20px;
   }
   #portfolio table {
-    background: rgba(20, 0, 40, 0.5);
+    background: rgba(70, 30, 100, 0.4);
   }
 
-  /* Contact Section */
+  /* Contact section */
   #contact {
     margin-top: 60px;
     text-align: center;
     font-weight: 300;
   }
   #contact a {
-    color: #fcd403;
+    color: #bb99ff;
     text-decoration: none;
     font-weight: 600;
   }
@@ -247,13 +199,11 @@
 </head>
 <body>
 
-<div id="background-glitch"></div>
-
 <div id="welcome-screen">
   Welcome to My Portfolio Website
 </div>
 
-<div id="container" style="display:none;">
+<div id="container">
 
   <section id="fortran-section">
     <h2>Fortran Developer</h2>
@@ -313,7 +263,7 @@
   </section>
 
   <section id="skills">
-    <h2 class="glitch-text" style="font-size: 2rem; text-align:center;">Skills</h2>
+    <h2>Skills</h2>
     <div class="flex-row" style="justify-content:center; gap:30px; margin-top:20px;">
       <table class="stats-table" style="max-width: 200px;">
         <thead><tr><th>Skill</th><th>Progress</th></tr></thead>
@@ -361,14 +311,15 @@
     <p>Email: <a href="mailto:ak1nf@example.com">ak1nf@example.com</a></p>
     <p>Twitter: <a href="https://twitter.com/ak1nf" target="_blank">@ak1nf</a></p>
   </section>
+
 </div>
 
 <script>
-  // Auto transition from welcome screen to main content after 4.5 seconds
+  // Show welcome screen, then after 3 seconds show main content without glitch animation
   setTimeout(() => {
     document.getElementById('welcome-screen').style.display = 'none';
     document.getElementById('container').style.display = 'block';
-  }, 4500);
+  }, 3000);
 </script>
 
 </body>
